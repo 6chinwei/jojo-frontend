@@ -1,0 +1,23 @@
+{
+  "name": "iShoNi",
+  "version": "0.0.0",
+  "authors": [
+    "6ChinWei <6chinwei@google.com>"
+  ],
+  "description": "iShoNi frontend project",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "materialize": "~0.97.7",
+    "jquery": "~2.2.1"
+  }
+}
