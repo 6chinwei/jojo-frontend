@@ -16,6 +16,7 @@
 .poll-table {
     td, th {
         min-width: 60px;
+        max-width: 80px;
         text-align: center;
         p {
             text-align: center;
@@ -30,6 +31,7 @@
 
     /*td*/.poll-option-count {
         width: 35px;
+        font-size: 18px;
     }
 
     /*td*/.poll-option-name {
@@ -39,4 +41,16 @@
     /*td*/.poll-checkbox {
         min-width: 120px;
     }
+}
+
+.loader {
+    margin-top: 60px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.background-grey {
+    background: #EEE;
 }
