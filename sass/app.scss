@@ -2,18 +2,5 @@
 @import '../bower_components/materialize/sass/materialize.scss';
 
 @import 'index';
+@import 'poll';
 @import 'sample';
-
-[type="checkbox"]:checked:disabled+label:before {
-   border-right: 2px solid #26a69a ;
-   border-bottom: 2px solid #26a69a ;
-   cursor: default;
-}
-
-.table-scrollable {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    //border: 1px solid #dddddd;
-    margin: 10px 0 !important;
-}

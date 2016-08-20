@@ -1,0 +1,42 @@
+
+[type="checkbox"]:checked:disabled+label:before {
+   border-right: 2px solid #26a69a ;
+   border-bottom: 2px solid #26a69a ;
+   cursor: default;
+}
+
+.table-scrollable {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    //border: 1px solid #dddddd;
+    margin: 10px 0 !important;
+}
+
+.poll-table {
+    td, th {
+        min-width: 60px;
+        text-align: center;
+        p {
+            text-align: center;    
+        }
+    }
+
+    /*th*/.poll-yourname {
+        input {
+            margin: 0;
+        }
+    }
+    
+    /*td*/.poll-option-count {
+        width: 35px;
+    }
+
+    /*td*/.poll-option-name {
+        min-width: 100px;
+    }
+
+    /*td*/.poll-checkbox {
+        min-width: 120px;
+    }
+}
