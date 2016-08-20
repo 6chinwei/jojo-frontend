@@ -12,15 +12,7 @@
 <body>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">揪揪 JoJo</a>
-      <!-- <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul> -->
-
-      <!-- <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a> -->
+      <a id="logo-container" href="/" class="brand-logo">揪揪 JoJo</a>
     </div>
   </nav>
 
@@ -56,17 +48,17 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="eventName" name="eventName" type="text" class="validate" required>
+              <input id="eventName" name="event_name" type="text" class="validate" required>
               <label for="eventName">活動名稱*</label>
             </div>
           
             <div class="input-field col s12">
-              <textarea id="eventDescription" name="eventDescription" class="materialize-textarea"></textarea>
+              <textarea id="eventDescription" name="event_desc" class="materialize-textarea"></textarea>
               <label for="eventDescription">活動描述</label>
             </div>
           
             <div class="input-field col s12">
-              <input id="eventCode" type="text" name="eventCode" class="validate" value="0000" required>
+              <input id="eventCode" type="text" name="pwd" class="validate" value="0000" required>
               <label for="eventCode">編輯活動的授權碼*</label>
             </div>
           </div>
@@ -79,13 +71,7 @@
                <ul class="collection event-options">
                   <li class="collection-item">
                     <div>
-                      <input type="text" value="星期一中午">
-                      <a href="#!" class="secondary-content pull-option"><i class="material-icons removeOptionBtn">close</i></a>
-                    </div>
-                  </li>
-                  <li class="collection-item">
-                    <div>
-                      <input type="text" value="星期二中午">
+                      <input type="text" value="" placeholder="例如：星期一晚上">
                       <a href="#!" class="secondary-content pull-option"><i class="material-icons removeOptionBtn">close</i></a>
                     </div>
                   </li>
@@ -99,7 +85,7 @@
           </div>
           
           <p>
-            <input type="checkbox" id="allowEdit" name="allowEdit"/>
+            <input type="checkbox" id="allowEdit" name="is_editable"/>
             <label for="allowEdit">允許投票者可以新增選項</label>
           </p> 
           
@@ -109,10 +95,6 @@
             </div>
           </div>
         </form>
-
-        <!-- <div id="createEventResult">
-          您的活動網址：http://www.google.com
-        </div> -->
       </div>
 
     </div>
