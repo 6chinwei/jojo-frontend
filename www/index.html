@@ -59,16 +59,12 @@
               <input id="eventName" name="eventName" type="text" class="validate" required>
               <label for="eventName">活動名稱*</label>
             </div>
-          </div>
           
-          <div class="row">
             <div class="input-field col s12">
               <textarea id="eventDescription" name="eventDescription" class="materialize-textarea"></textarea>
               <label for="eventDescription">活動描述</label>
             </div>
-          </div>
-
-          <div class="row">
+          
             <div class="input-field col s12">
               <input id="eventCode" type="text" name="eventCode" class="validate" value="0000" required>
               <label for="eventCode">編輯活動的授權碼*</label>
@@ -84,18 +80,18 @@
                   <li class="collection-item">
                     <div>
                       <input type="text" value="星期一中午">
-                      <a href="#!" class="secondary-content"><i class="material-icons removeOptionBtn">close</i></a>
+                      <a href="#!" class="secondary-content pull-option"><i class="material-icons removeOptionBtn">close</i></a>
                     </div>
                   </li>
                   <li class="collection-item">
                     <div>
                       <input type="text" value="星期二中午">
-                      <a href="#!" class="secondary-content"><i class="material-icons removeOptionBtn">close</i></a>
+                      <a href="#!" class="secondary-content pull-option"><i class="material-icons removeOptionBtn">close</i></a>
                     </div>
                   </li>
                   <li class="collection-item">
                     <div>
-                      <a href="" id="addNewOption">[新增選項]</a>
+                      <a href="" id="addNewOption" class="add-new-option-btn">[新增選項]</a>
                     </div>
                   </li>
                 </ul>
@@ -113,6 +109,10 @@
             </div>
           </div>
         </form>
+
+        <!-- <div id="createEventResult">
+          您的活動網址：http://www.google.com
+        </div> -->
       </div>
 
     </div>
