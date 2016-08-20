@@ -48,7 +48,7 @@
 
       <!--   Icon Section   -->
       <div class="row">
-        <form class="col s12">
+        <form class="col s12" id="createEventForm">
           <div class="row">
             <div class="col s12">
               <h4>新增活動</h4>
@@ -56,45 +56,46 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="eventName" type="text" class="validate" required>
+              <input id="eventName" name="eventName" type="text" class="validate" required>
               <label for="eventName">活動名稱*</label>
             </div>
           </div>
           
           <div class="row">
             <div class="input-field col s12">
-              <textarea id="eventDescription" class="materialize-textarea"></textarea>
+              <textarea id="eventDescription" name="eventDescription" class="materialize-textarea"></textarea>
               <label for="eventDescription">活動描述</label>
             </div>
           </div>
 
           <div class="row">
             <div class="input-field col s12">
-              <input id="eventCode" type="text" class="validate" value="0000" required>
+              <input id="eventCode" type="text" name="eventCode" class="validate" value="0000" required>
               <label for="eventCode">編輯活動的授權碼*</label>
             </div>
           </div>
 
           <div class="row">
-            <div class="input-field col s12">
-              <input id="eventCode" type="text" class="validate" value="0000" required>
-              <label for="eventCode">投票選項*</label>
+            <div class="col s12">
+              <label for="eventOptions">投票選項*</label>
             </div>
-            <div>
-               <ul class="collection with-header">
+            <div class="col s12">
+               <ul class="collection event-options">
                   <li class="collection-item">
                     <div>
-                      星期一中午<a href="#!" class="secondary-content"><i class="material-icons">close</i></a>
+                      <input type="text" value="星期一中午">
+                      <a href="#!" class="secondary-content"><i class="material-icons removeOptionBtn">close</i></a>
                     </div>
                   </li>
                   <li class="collection-item">
                     <div>
-                      星期二中午<a href="#!" class="secondary-content"><i class="material-icons">close</i></a>
+                      <input type="text" value="星期二中午">
+                      <a href="#!" class="secondary-content"><i class="material-icons removeOptionBtn">close</i></a>
                     </div>
                   </li>
                   <li class="collection-item">
                     <div>
-                      <a href="">[新增選項]</a>
+                      <a href="" id="addNewOption">[新增選項]</a>
                     </div>
                   </li>
                 </ul>
@@ -102,9 +103,15 @@
           </div>
           
           <p>
-            <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked"/>
-            <label for="filled-in-box">允許投票者可以新增選項</label>
-          </p>          
+            <input type="checkbox" id="allowEdit" name="allowEdit"/>
+            <label for="allowEdit">允許投票者可以新增選項</label>
+          </p> 
+          
+          <div class="row">
+            <div class="col s12 right-align">
+              <button type="submit" class="waves-effect waves-light btn-large" id="createEventBtn">建立活動</button>
+            </div>
+          </div>
         </form>
       </div>
 
