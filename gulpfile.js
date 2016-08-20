@@ -21,7 +21,8 @@ var paths = {
     font_src: [
         'bower_components/materialize/dist/fonts/**/**',
     ],
-    font_dest: 'www/fonts/'
+    font_dest: 'www/fonts/',
+    html_src: 'www/**/**.html'
 };
 
 function swallowError (error) {
@@ -66,12 +67,14 @@ gulp.task('serve', ['css', 'js'], function() {
 
     gulp.watch(paths.scss, ['css']);
     gulp.watch(paths.js_src, ['js']);
+    gulp.watch(paths.html_src).on('change', browserSync.reload);
 });
 
 gulp.task('watch', ['css', 'js', 'fonts'], function() {
   gulp.watch(paths.scss, ['css']);
   gulp.watch(paths.js_src, ['js']);
   gulp.watch(paths.font_src, ['fonts']);
+  gulp.watch(paths.html_src).on('change', browserSync.reload);
 });
 
 // Gulp Default Task 
