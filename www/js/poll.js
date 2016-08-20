@@ -1,17 +1,55 @@
+// update vote count after click the checkbox
+function bindCheckboxEvent() {
+    $('.poll-table input[type=checkbox]').unbind("change");
+    $('.poll-table input[type=checkbox]').change(function(){
+        var votesCount = parseInt($(this).closest("tr").children(".poll-option-count").text());
+        if ($(this).is(":checked")) {
+            $(this).closest("tr").children(".poll-option-count").text(votesCount + 1);
+        } else {
+            $(this).closest("tr").children(".poll-option-count").text(votesCount - 1);
+        }
+    });
+}
+
+// Click the edit icon over the user name
+function bindClickEditVoteButton() {
+    $('.voter i').unbind("click");
+    $(".voter i").click(function(event){
+        console.log('$(this)', $(this));
+        var voterIndex = parseInt($(this).attr('id').split('_')[1]) + 1;
+        console.log(voterIndex);
+        var optionsCount = $(".poll-option-name").size();
+        for (var i = 0; i < optionsCount; i++) {
+            var checkBoxId = '#checkbox_' + i + '_' + voterIndex;
+            $(checkBoxId).removeAttr('disabled');
+        }
+    });
+}
+
 (function($){
     
     $(function(){
         $("#voteButton").click(function(event) {
             event.preventDefault();
+
+            var userSelectArray = [];
+            $('.poll-checkbox input:checked').each(function() {
+               userSelectArray.push(parseInt($(this).attr('id').split('_')[1]));
+            });
+
+            // var optionsArray = [];
+            // $('.poll-option-name input').each(function() {
+            //     optionsArray.push({
+            //         opt_id: $(this).attr('id').split('_')[1],
+            //         opt_desc: $(this).val()
+            //     });
+            // });
+
             var body = {
-              "user_name": 'user_name',
-              "user_sel": [1,2],
+              "user_name": $('#yourName').val(),
+              "user_sel": userSelectArray,
               "event_id": getUuid()
-              // "opt":[
-              // {
-              //   "opt_id": int,
-              //   "opt_desc": string
-              // }]
+              // "opt": optionsArray
             };
 
             // send request
@@ -23,6 +61,7 @@
             }).done(function(resonse) {
                 // Success
                 console.log('Success');
+                location.reload();
             }).fail(function(error) {
                 // Error
                 console.log(error);
@@ -57,16 +96,8 @@
             });
         });
 
-        $(".voter i").click(function(event){
-            var voterIndex = parseInt($(this).attr('id').split('_')[1]) + 1
-            var optionsCount = $(".poll-option-name").size()
-            for (var i = 0; i < optionsCount; i++) {
-                var checkBoxId = '#checkbox_' + i + '_' + voterIndex
-                $(checkBoxId).removeAttr('disabled')
-            }
-        })
-
-        bindCheckboxEvent()
+        bindClickEditVoteButton();
+        bindCheckboxEvent();
 
         $("#addOptionButton").click(function(event) {
             event.preventDefault();
@@ -90,7 +121,7 @@
                 '</td>' +
                 checkboxesHTML(optionsCount, votersCount) +
                 '</tr>')
-            bindCheckboxEvent()
+            bindCheckboxEvent();
         });
 
         function checkboxesHTML(optionsCount, votersCount) {
@@ -105,19 +136,6 @@
             }
             console.log(str)
             return str
-        }
-
-        function bindCheckboxEvent() {
-            $('.poll-table input[type=checkbox]').unbind("change")
-            $('.poll-table input[type=checkbox]').change(function(){
-                // console.log($(this).closest("tr").children(".poll-option-count"));
-                var votesCount = parseInt($(this).closest("tr").children(".poll-option-count").text())
-                if ($(this).is(":checked")) {
-                    $(this).closest("tr").children(".poll-option-count").text(votesCount + 1)
-                } else {
-                    $(this).closest("tr").children(".poll-option-count").text(votesCount - 1)
-                }
-            })
         }
 
         // $("#checkbox1_1").prop("disabled", false);

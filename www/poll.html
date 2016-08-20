@@ -94,51 +94,11 @@
                       <br>
                       <input id="yourName" type="text" class="validate center-align" placeholder="你的名字？" required>
                     </th>
-                    <th class="voter">
-                      <a class="btn-floating waves-effect waves-light"><i class="material-icons" id="editButton_0">mode_edit</i></a>
-                      Rocky
-                    </th>
-                    <th class="voter">
-                      <a class="btn-floating waves-effect waves-light"><i class="material-icons" id="editButton_1">mode_edit</i></a>
-                      Tom
-                    </th>
-                    <th class="voter">
-                      <a class="btn-floating waves-effect waves-light"><i class="material-icons" id="editButton_2">mode_edit</i></a>
-                      Alex
-                    </th>
                   </tr>
                 </thead>
 
 
                 <tbody id="tableBody">
-                  <tr>
-                    <td class="poll-option-count">2</td>
-                    <td class="poll-option-name">星期一</td>
-                    <td class="poll-checkbox background-grey">
-                       <p>
-                        <input type="checkbox" id="checkbox_0_0" />
-                        <label for="checkbox_0_0"></label>
-                      </p>
-                    </td>
-                    <td>
-                       <p>
-                        <input type="checkbox" id="checkbox_0_1" checked="checked" disabled="disabled"/>
-                        <label for="checkbox_0_1"></label>
-                      </p>
-                    </td>
-                    <td>
-                       <p>
-                        <input type="checkbox" id="checkbox_0_2" checked="checked" disabled="disabled"/>
-                        <label for="checkbox_0_2"></label>
-                      </p>
-                    </td>
-                    <td>
-                       <p>
-                        <input type="checkbox" id="checkbox_0_3" disabled="disabled"/>
-                        <label for="checkbox_0_3"></label>
-                      </p>
-                    </td>
-                  </tr>
                 </tbody>
 
 
@@ -151,11 +111,11 @@
 
           <div class="row">
             <div class="col s12 right-align">
-              <a class="waves-effect waves-light btn" id="voteButton">送出投票</a>
+              <a class="waves-effect waves-light btn-large" id="voteButton">送出投票</a>
             </div>
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="input-field col s6">
               <input id="passwordTextField" type="text" class="validate">
               <label for="passwordTextField">管理員密碼</label>
@@ -163,7 +123,7 @@
             <div class="input-field col s6">
               <a class="waves-effect waves-light btn" id="adminButton">成為管理員</a>
             </div>
-          </div>
+          </div> -->
 
         </form>
     </div>
@@ -226,22 +186,68 @@
     var uuid = getUuid();
     $('.loader').show();
 
-    $.ajax({
-        method: 'GET',
-        url: apiEndpoint + '/event/get?id=' + uuid
-    }).done(function(response) {
-        $('#eventName').text(response.event_name);
-        $('#eventDescription').html(response.event_desc);
-        if(Array.isArray(response.opt)) {
-          // var 
-        };
-        $('.loader').hide();
-    }).fail(function(error) {
-        console.log(error);
-        $('.loader').hide();
-    });
+    getEvent();
+    function getEvent() {
+        // Get event
+        $.ajax({
+            method: 'GET',
+            url: apiEndpoint + '/event/get?id=' + uuid
+        }).done(function(response) {
+            $("#tableBody").html('');
+            var tableBodyHTML = '';
 
+            $('#eventName').text(response.event_name);
+            $('#eventDescription').html(response.event_desc);
 
+            // Add options content by opt
+            if(Array.isArray(response.opt)) {          
+              response.opt.forEach(function(option, index) {
+                tableBodyHTML +=  '<tr>' +
+                  '<td class="poll-option-count">' + 0 + '</td>' +
+                  '<td class="poll-option-name">' + option.opt_desc + '</td>' +
+                  '<td class="poll-checkbox background-grey">' +
+                     '<p>' +
+                      '<input type="checkbox" id="checkbox_' + index + '_0" />' + 
+                      '<label for="checkbox_' + index + '_0"></label>' + 
+                    '</p>' +
+                  '</td>' +
+                '</tr>';
+              });
+
+              $("#tableBody").html(tableBodyHTML);
+
+              bindCheckboxEvent();
+            };
+
+            // Add voters by poll
+            if(Array.isArray(response.poll)) {
+              response.poll.forEach(function(poll, pollIndex){
+                $('thead tr').append('<th class="voter">' + 
+                          '<a class="btn-floating waves-effect waves-light"><i class="material-icons" id="editButton_'+ pollIndex + '">mode_edit</i></a><br>' + poll.user_name + '</th>');
+
+                $('tbody tr').each(function(index) {
+                  $(this).append('<td><p>'+
+                            '<input type="checkbox" id="checkbox_' + index + '_' + (pollIndex+1) +'" ' + (poll.user_sel.indexOf(index) > -1 ? 'checked="checked"': '') + ' disabled="disabled">' +
+                            '<label for="checkbox_' + index + '_' + (pollIndex+1) +'"></label>' +
+                          '</p></td>');
+                });
+              });
+
+              bindClickEditVoteButton();
+            }
+
+              // $('tbody tr').each(function(index) {
+              //   $(this).find('[type=checkbox]')
+              // });
+
+            $('.loader').hide();
+        }).fail(function(error) {
+            console.log(error);
+            $('.loader').hide();
+        });
+
+    }
+    
   </script>
   </body>
 </html>

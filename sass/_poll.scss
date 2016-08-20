@@ -15,8 +15,8 @@
 
 .poll-table {
     td, th {
-        min-width: 60px;
-        max-width: 80px;
+        min-width: 80px;
+        max-width: 120px;
         text-align: center;
         p {
             text-align: center;
@@ -53,4 +53,8 @@
 
 .background-grey {
     background: #EEE;
+}
+
+[type="checkbox"]:not(:checked):disabled + label:before {
+    display: none;
 }
