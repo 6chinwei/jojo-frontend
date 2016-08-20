@@ -53,15 +53,16 @@ var apiEndpoint = 'http://104.214.149.33:8888';
             $('.event-options li:nth-last-child(2)').after(optionHTML);
 
             // Bind event for new item
+            bindRemove();
         });
 
         // Bind event for click 'remove' icon
         function bindRemove() {
+            $('.removeOptionBtn').unbind('click');
             $('.removeOptionBtn').click(function(event) {
                 // Get index
                 var index = $(this).closest('.collection-item').index();
-
-                if(index > 0) {
+                if(index >= 0 && $('.removeOptionBtn').length > 1) {
                     $('.event-options .collection-item').eq(index).remove();
                 }
             });
@@ -109,6 +110,7 @@ var apiEndpoint = 'http://104.214.149.33:8888';
             });
         }
 
+        // Scroll animation
         $('#download-button').click(function() {
             $('html, body').animate({
                scrollTop: $("#createEventForm").offset().top
