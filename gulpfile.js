@@ -15,6 +15,7 @@ var paths = {
     js_src: [
         'bower_components/jquery/dist/jquery.js',
         'bower_components/materialize/dist/js/materialize.js',
+        'bower_components/jquery-validation/dist/jquery.validate.js',
         'www/js/**/*.js'
     ],
     js_dest: 'www/dist/',
