@@ -1,6 +1,6 @@
-(function($){
-    var apiEndpoint = 'http://104.214.149.33:8888';
+var apiEndpoint = 'http://104.214.149.33:8888';
 
+(function($){
     $(function(){
         bindRemove();
 
@@ -79,6 +79,9 @@
                 body[input.name] = input.value;
             });
 
+            // 
+            body['is_editable'] = body['is_editable'] ? true : false;
+
             // Add options array to body
             $('.event-options input').each(function(index) {
                 pullOptions.push( {
@@ -92,10 +95,10 @@
             $.ajax({
                 method: 'POST',
                 url: apiEndpoint + '/event/add',
-                data: body
+                data: JSON.stringify(body),
+                contentType: 'application/json'
             }).done(function(resonse) {
-                // Success                
-                
+                // Success
                 // Save result in localStorage
                 localStorage.setItem('url', resonse.url);
 
@@ -103,11 +106,7 @@
                 window.location = 'result.html';
             }).fail(function() {
                 // Error
-                // alert('喔喔！發生錯誤了呢');
-
-                // TEST
-                localStorage.setItem('url', 'http://localhost:3000/poll.html?id=uuid');
-                window.location = 'result.html';
+                alert('喔喔！好像發生錯誤了呢');
             });
         }
     }); // end of document ready
