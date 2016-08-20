@@ -109,5 +109,10 @@ var apiEndpoint = 'http://104.214.149.33:8888';
             });
         }
 
+        $('#download-button').click(function() {
+            $('html, body').animate({
+               scrollTop: $("#createEventForm").offset().top
+           }, 1000);
+        });
     }); // end of document ready
 })(jQuery); // end of jQuery name space
