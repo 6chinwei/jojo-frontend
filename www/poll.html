@@ -28,7 +28,7 @@
 
   <div class="container">
     <div class="section">
-      
+
         <form>
 
           <div class="row">
@@ -42,27 +42,40 @@
             <div class="col s12">
               <div class="table-scrollable">
               <table class="poll-table">
+
+
                 <thead>
                   <tr>
-                    <th data-field="id"></th>
-                    <th data-field="id">選項</th>
+                    <th data-field="id"><br>投票數</th>
+                    <th data-field="id"><br>選項</th>
                     <th data-field="name" class="poll-yourname">
-                      <input id="last_name" type="text" class="validate" placeholder="你的名字？" required>
+                      <br>
+                      <input id="yourName" type="text" class="validate" placeholder="你的名字？" required>
                     </th>
-                    <th data-field="price">Rocky</th>
-                    <th data-field="price">Tom</th>
-                    <th data-field="price">Alex</th>
+                    <th data-field="price">
+                      <i class="material-icons">mode_edit</i><br>
+                      Rocky
+                    </th>
+                    <th data-field="price">
+                      <i class="material-icons">mode_edit</i><br>
+                      Tom
+                    </th>
+                    <th data-field="price">
+                      <i class="material-icons">mode_edit</i><br>
+                      Alex
+                    </th>
                   </tr>
                 </thead>
 
-                <tbody>
+
+                <tbody id="tableBody">
                   <tr>
                     <td class="poll-option-count">8</td>
                     <td class="poll-option-name">星期一</td>
                     <td class="poll-checkbox">
                        <p>
-                        <input type="checkbox" id="checkbox1_0" />
-                        <label for="checkbox1_0"></label>
+                        <input type="checkbox" id="checkbox_0_0" />
+                        <label for="checkbox_0_0"></label>
                       </p>
                     </td>
                     <td>
@@ -79,57 +92,15 @@
                     </td>
                     <td></td>
                   </tr>
-                  <tr>
-                    <td class="poll-option-count">8</td>
-                    <td class="poll-option-name">星期四</td>
-                    <td class="poll-checkbox">
-                      <p>
-                        <input type="checkbox" id="checkbox2_0" />
-                        <label for="checkbox2_0"></label>
-                      </p>
-                    </td>
-                    <td>
-                       <p>
-                        <input type="checkbox" id="checkbox2_1" checked="checked" disabled="disabled"/>
-                        <label for="checkbox2_1"></label>
-                      </p>
-                    </td>
-                    <td></td>
-                    <td>
-                       <p>
-                        <input type="checkbox" id="checkbox2_3" checked="checked" disabled="disabled"/>
-                        <label for="checkbox2_3"></label>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="poll-option-count">8</td>
-                    <td class="poll-option-name">星期三</td>
-                    <td class="poll-checkbox">
-                      <p>
-                        <input type="checkbox" id="checkbox3_0" />
-                        <label for="checkbox3_0"></label>
-                      </p>
-                    </td>
-                    <td></td>
-                    <td>
-                       <p>
-                        <input type="checkbox" id="checkbox3_2" checked="checked" disabled="disabled"/>
-                        <label for="checkbox3_2"></label>
-                      </p>
-                    </td>
-                    <td>
-                       <p>
-                        <input type="checkbox" id="checkbox3_3" checked="checked"  disabled="disabled"/>
-                        <label for="checkbox3_3"></label>
-                      </p>
-                    </td>
-                  </tr>
                 </tbody>
+
+
               </table>
             </div>
             </div>
           </div>
+
+          <a class="btn-floating btn-small waves-effect waves-light gree" id="addOptionButton"><i class="material-icons">add</i></a>
 
           <div class="row">
             <div class="col s12 right-align">

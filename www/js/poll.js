@@ -2,7 +2,9 @@
     var apiEndpoint = 'http://104.214.149.33/api';
 
     $(function(){
-        bindRemove();
+
+
+
         $("#voteButton").click(function(event) {
             event.preventDefault();
             alert("voteButton pressed")
@@ -13,96 +15,48 @@
             console.log($("#passwordTextField"));
             var str = $("#passwordTextField").val()
             alert(str)
-
         });
 
-        $("#createEventForm").validate({
-            submitHandler: function(form) {
-                // some other code
-                // maybe disabling submit button
-                // then:
-                console.log('submit');
-                $(form).submit();
-            },
-            rules: {
-                eventName: {
-                    required: true
-                },
-                eventCode: {
-                    required: true
-                }
-            },
-            messages: {
-                eventName: {
-                    required: "此項目必填"
-                },
-                eventCode: {
-                    required: "此項目必填"
-                }
-            },
-            errorElement: 'div',
-            errorPlacement: function(error, element) {
-                var placement = $(element).data('error');
-                if (placement) {
-                    $(placement).append(error)
-                } else {
-                    error.insertAfter(element);
-                }
-            }
-        });
-
-        // Add new option
-        $('#addNewOption').click(function(event) {
+        $("#addOptionButton").click(function(event) {
             event.preventDefault();
+            var votersCount = 3
+            var optionsCount = $(".poll-option-name").size()
+            var previousIndex = optionsCount - 1
+            console.log(previousIndex);
+            console.log($("#option_" + previousIndex));
 
-            var optionHTML = '<li class="collection-item">'+
-                    '<div>'+
-                      '<input type="text" value="">'+
-                      '<a href="#!" class="secondary-content"><i class="material-icons removeOptionBtn">close</i></a>'+
-                    '</div>'+
-                  '</li>';
-            $('.event-options li:nth-last-child(2)').after(optionHTML);
-
-            bindRemove();
+            if ($("#option_" + previousIndex).length && !$("#option_" + previousIndex).val()) {
+                return false;
+            }
+            $("#tableBody").append('<tr>' +
+                '<td class="poll-option-count">' + '0' + '</td>' +
+                '<td class="poll-option-name">' +
+                '<input id="option_'+ optionsCount +'" type="text" class="validate" placeholder="請輸入選項">' +
+                '</td>' +
+                '<td class="poll-checkbox">' +
+                    '<p>' +
+                        '<input type="checkbox" id="checkbox_' + optionsCount + '_0" />' +
+                        '<label for="checkbox_' + optionsCount + '_0"></label> ' +
+                      '</p>' +
+                    '</td>' +
+                    '<td></td>'.repeat(votersCount) +
+                  '</tr>')
+            bindCheckboxEvent()
         });
 
-        function bindRemove() {
-            $('.removeOptionBtn').click(function(event) {
-                // Get index
-                var index = $(this).closest('.collection-item').index();
-                console.log(index);
-                if(index > 0) {
-                    $('.event-options .collection-item').eq(index).remove();
+        function bindCheckboxEvent() {
+            $('.poll-table input[type=checkbox]').change(function(){
+                // console.log($(this).closest("tr").children(".poll-option-count"));
+                var votesCount = parseInt($(this).closest("tr").children(".poll-option-count").text())
+                if ($(this).is(":checked")) {
+                    $(this).closest("tr").children(".poll-option-count").text(votesCount + 1)
+                } else {
+                    $(this).closest("tr").children(".poll-option-count").text(votesCount - 1)
                 }
-            });
+            })
         }
 
-        function validateCreateEventForm() {
-            var isValid = true;
-
-
-            if($('eventName').val() === '' || $('eventName').val() === null) {
-                isValid = false;
-            }
-
-            if($('eventName').val() === '' || $('eventName').val() === null) {
-
-            }
-            $('eventCode')
-
-            return true;
-        }
-
-        function submitCreateEventFrom(form) {
-            $.ajax({
-                url: apiEndpoint,
-                data: form
-            }).done(function() {
-
-            }).fail(function() {
-
-            });
-        }
+        // $("#checkbox1_1").prop("disabled", false);
 
     }); // end of document ready
 })(jQuery); // end of jQuery name space
