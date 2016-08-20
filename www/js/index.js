@@ -1,5 +1,5 @@
 (function($){
-    var apiEndpoint = 'http://104.214.149.33/api';
+    var apiEndpoint = 'http://104.214.149.33';
 
     $(function(){
         bindRemove();
@@ -68,20 +68,32 @@
             });
 
             var pullOptions = [];
-            $('.event-options input').each(function() {
-                pullOptions.push( $( this ).val() );
+            $('.event-options input').each(function(index) {
+                pullOptions.push( {
+                    opt_id: index,
+                    opt_desc: $( this ).val() 
+                });
             });
-            body.options = pullOptions;
+            body.opt = pullOptions;
 
             console.log('Results', body);
 
+            
+
+            // window.location = 'result.html';
+
             $.ajax({
-                url: apiEndpoint,
-                data: $('#createEventForm').serializeArray()
-            }).done(function() {
-
+                method: 'POST',
+                url: apiEndpoint + '/event/add',
+                data: body
+            }).done(function(resonse) {
+                console.log('response', resonse);
+                localStorage.setItem('url', resonse.url);
+                window.location = 'result.html';
             }).fail(function() {
-
+                // TEST
+                localStorage.setItem('url', 'http://localhost:3000/poll.html?id=uuid');
+                window.location = 'result.html';
             });
         }
 
