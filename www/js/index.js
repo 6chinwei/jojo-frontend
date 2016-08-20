@@ -13,7 +13,7 @@
                     required: true
                 },
                 eventCode: {
-                    required: true  
+                    required: true
                 }
             },
             messages: {
@@ -21,7 +21,7 @@
                     required: "此項目必填"
                 },
                 eventCode: {
-                    required: "此項目必填"  
+                    required: "此項目必填"
                 }
             },
             errorElement: 'div',
@@ -47,7 +47,7 @@
                   '</li>';
             $('.event-options li:nth-last-child(2)').after(optionHTML);
 
-            bindRemove();            
+            bindRemove();
         });
 
         function bindRemove() {
@@ -55,7 +55,7 @@
                 // Get index
                 var index = $(this).closest('.collection-item').index();
                 if(index > 0) {
-                    $('.event-options .collection-item').eq(index).remove();    
+                    $('.event-options .collection-item').eq(index).remove();
                 }
             });
         }
@@ -86,7 +86,7 @@
         }
 
         function createEventSuccessCallback() {
-            
+
         }
     }); // end of document ready
 })(jQuery); // end of jQuery name space
