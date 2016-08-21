@@ -14,10 +14,8 @@ function bindCheckboxEvent() {
 // Click the edit icon over the user name
 function bindClickEditVoteButton() {
     $('.voter i').unbind("click");
-    $(".voter i").click(function(event){
-        console.log('$(this)', $(this));
+    $(".voter i").click(function(event){        
         var voterIndex = parseInt($(this).attr('id').split('_')[1]) + 1;
-        console.log(voterIndex);
         var optionsCount = $(".poll-option-name").size();
         for (var i = 0; i < optionsCount; i++) {
             var checkBoxId = '#checkbox_' + i + '_' + voterIndex;
@@ -27,7 +25,6 @@ function bindClickEditVoteButton() {
 }
 
 (function($){
-    
     $(function(){
         $("#voteButton").click(function(event) {
             event.preventDefault();
@@ -37,19 +34,19 @@ function bindClickEditVoteButton() {
                userSelectArray.push(parseInt($(this).attr('id').split('_')[1]));
             });
 
-            // var optionsArray = [];
-            // $('.poll-option-name input').each(function() {
-            //     optionsArray.push({
-            //         opt_id: $(this).attr('id').split('_')[1],
-            //         opt_desc: $(this).val()
-            //     });
-            // });
+            var optionsArray = [];
+            $('.poll-option-name input').each(function() {
+                optionsArray.push({
+                    opt_id: $(this).attr('id').split('_')[1],
+                    opt_desc: $(this).val()
+                });
+            });
 
             var body = {
               "user_name": $('#yourName').val(),
               "user_sel": userSelectArray,
-              "event_id": getUuid()
-              // "opt": optionsArray
+              "event_id": getUuid(),
+              "opt": optionsArray
             };
 
             // send request
