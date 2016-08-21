@@ -15,6 +15,7 @@ var paths = {
     js_src: [
         'bower_components/jquery/dist/jquery.js',
         'bower_components/materialize/dist/js/materialize.js',
+        'bower_components/jquery-validation/dist/jquery.validate.js',
         'www/js/**/*.js'
     ],
     js_dest: 'www/dist/',
@@ -33,7 +34,7 @@ function swallowError (error) {
 // Style
 gulp.task('css', function() {
     gulp.src(paths.scss)
-        // .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(sass({outputStyle: 'compressed'}))
         .pipe(sass({}))
         .on('error', sass.logError)
         .pipe(rename({suffix: '.min'}))
@@ -45,7 +46,7 @@ gulp.task('css', function() {
 gulp.task('js', function() {
     gulp.src(paths.js_src)
         .pipe(concat('app.min.js'))
-        // .pipe(uglify())
+        .pipe(uglify())
         .on('error', swallowError)
         .pipe(gulp.dest(paths.js_dest))
         .pipe(browserSync.stream());

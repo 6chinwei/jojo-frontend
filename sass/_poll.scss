@@ -1,0 +1,65 @@
+
+[type="checkbox"]:checked:disabled+label:before {
+   //border-right: 2px solid #26a69a ;
+   //border-bottom: 2px solid #26a69a ;
+   //cursor: default;
+}
+
+.table-scrollable {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    //border: 1px solid #dddddd;
+    margin: 10px 0 !important;
+}
+
+.poll-table {
+    td, th {
+        min-width: 80px;
+        max-width: 120px;
+        text-align: center;
+        p {
+            text-align: center;
+        }
+    }
+
+    /*th*/.poll-yourname {
+        input {
+            margin: 0;
+        }
+    }
+
+    /*td*/.poll-option-count {
+        width: 35px;
+        font-size: 18px;
+    }
+
+    /*td*/.poll-option-name {
+        min-width: 100px;
+    }
+
+    /*td*/.poll-checkbox {
+        min-width: 120px;
+    }
+}
+
+.loader {
+    margin-top: 60px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.background-grey {
+    background: #EEE;
+}
+
+[type="checkbox"]:not(:checked):disabled + label:before {
+    display: none;
+}
+
+#yourName-error {
+    color: #ee6e73;
+    font-size: 12px;
+}

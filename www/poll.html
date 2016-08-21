@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <title>揪揪 JoJo</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="dist/app.min.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo">揪揪 JoJo</a>
+      <!-- <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul> -->
+
+      <!-- <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a> -->
+    </div>
+  </nav>
+
+  <div class="loader">
+    <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+        <form id="pollForm">
+
+          <div class="row">
+            <div class="col s12">
+              <h4 id="eventName"></h4>
+              <p id="eventDescription"></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="table-scrollable">
+              <table class="poll-table">
+
+
+                <thead>
+                  <tr>
+                    <th data-field="id"><br>投票數</th>
+                    <th data-field="id"><br>選項</th>
+                    <th data-field="name" class="poll-yourname background-grey">
+                      <br>
+                      <input id="yourName" name="yourName" type="text" class="validate center-align" placeholder="你的名字？" required>
+                    </th>
+                  </tr>
+                </thead>
+
+
+                <tbody id="tableBody">
+                </tbody>
+
+
+              </table>
+            </div>
+            </div>
+          </div>
+
+          <a class="btn-floating btn-small waves-effect waves-light" id="addOptionButton"><i class="material-icons">add</i></a>
+
+          <div class="row">
+            <div class="col s12 right-align">
+              <button type="submit" class="waves-effect waves-light btn-large" id="voteButton">儲存修改 & 送出投票</button>
+            </div>
+          </div>
+        </form>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+        <div class="row">
+          <div class="input-field col" style="width: 170px;">
+            <input id="passwordTextField" type="text" class="validate" placeholder="活動授權碼">
+            <label for="passwordTextField">使用授權碼才可編輯活動內容</label>
+          </div>
+          <div class="input-field col">
+            <a class="waves-effect waves-light btn" id="adminButton">編輯活動</a>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+  <!--  Scripts-->
+  <script src="dist/app.min.js"></script>
+  <script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    function getUuid() {
+      return getParameterByName('id');
+    }
+
+    var uuid = getUuid();
+    if(!uuid) {
+      window.location = 'index.html';
+    }
+
+    $('.loader').show();
+
+    getEvent();
+    function getEvent() {
+        // Get event
+        $.ajax({
+            method: 'GET',
+            url: apiEndpoint + '/event/get?id=' + uuid
+        }).done(function(response) {
+            $("#tableBody").html('');
+            var tableBodyHTML = '';
+
+            $('#eventName').text(response.event_name);
+            $('#eventDescription').html(response.event_desc);
+
+            var optionCountDict = {}
+            // Add options content by opt
+            if(Array.isArray(response.opt)) {
+              response.opt.forEach(function(option, index) {
+                tableBodyHTML +=  '<tr>' +
+                  '<td class="poll-option-count">' + 0 + '</td>' +
+                  '<td class="poll-option-name">' + option.opt_desc + '</td>' +
+                  '<td class="poll-checkbox background-grey">' +
+                     '<p>' +
+                      '<input type="checkbox" id="checkbox_' + index + '_0" />' +
+                      '<label for="checkbox_' + index + '_0"></label>' +
+                    '</p>' +
+                  '</td>' +
+                '</tr>';
+                optionCountDict[option.opt_id] = 0
+              });
+              $("#tableBody").html(tableBodyHTML);
+
+            };
+
+            // Add voters by poll
+            if(Array.isArray(response.poll)) {
+              response.poll.forEach(function(poll, pollIndex){
+                $('thead tr').append('<th class="voter">' +
+                          '<a class="btn-floating waves-effect waves-light"><i class="material-icons" id="editButton_'+ pollIndex + '">mode_edit</i></a><br>' + poll.user_name + '</th>');
+
+                $('tbody tr').each(function(index) {
+                  $(this).append('<td><p>'+
+                            '<input type="checkbox" id="checkbox_' + index + '_' + (pollIndex+1) +'" ' + (poll.user_sel.indexOf(index) > -1 ? 'checked="checked"': '') + ' disabled="disabled">' +
+                            '<label for="checkbox_' + index + '_' + (pollIndex+1) +'"></label>' +
+                          '</p></td>');
+                });
+
+                if(Array.isArray(poll.user_sel)){
+                  poll.user_sel.forEach(function(selection) {
+                    optionCountDict[selection] += 1
+                  });
+                }
+              });
+
+              $(".poll-option-count").each(function(index){
+                $(this).text(optionCountDict[index])
+              })
+
+              bindCheckboxEvent();
+              bindClickEditVoteButton();
+            }
+
+              // $('tbody tr').each(function(index) {
+              //   $(this).find('[type=checkbox]')
+              // });
+
+            $('.loader').hide();
+        }).fail(function(error) {
+            console.log(error);
+            $('.loader').hide();
+        });
+
+    }
+
+  </script>
+  </body>
+</html>
