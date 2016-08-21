@@ -26,9 +26,32 @@ function bindClickEditVoteButton() {
 
 (function($){
     $(function(){
-        $("#voteButton").click(function(event) {
-            event.preventDefault();
+        $('#pollForm').validate({
+            submitHandler: function() {
+                submitPollFrom();
+            },
+            rules: {
+                yourName: {
+                    required: true
+                }
+            },
+            messages: {
+                yourName: {
+                    required: "此項目必填"
+                }
+            },
+            errorElement: 'div',
+            errorPlacement: function(error, element) {
+                var placement = $(element).data('error');
+                if (placement) {
+                    $(placement).append(error);
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
 
+        function submitPollFrom(event) {
             var userSelectArray = [];
             $('.poll-checkbox input:checked').each(function() {
                userSelectArray.push(parseInt($(this).attr('id').split('_')[1]));
@@ -64,7 +87,7 @@ function bindClickEditVoteButton() {
                 console.log(error);
                 alert('喔喔！好像發生錯誤了呢');
             });
-        });
+        }
 
         $("#adminButton").click(function() {
             var body = {
@@ -84,7 +107,7 @@ function bindClickEditVoteButton() {
             }).fail(function(error) {
                 // Error
                 if(error.responseText == 'invalid password') {
-                    alert('密碼錯誤');    
+                    alert('授權碼錯誤');    
                 }
                 else {
                     console.log(error);    
@@ -134,8 +157,6 @@ function bindClickEditVoteButton() {
             console.log(str)
             return str
         }
-
-        // $("#checkbox1_1").prop("disabled", false);
 
     }); // end of document ready
 })(jQuery); // end of jQuery name space

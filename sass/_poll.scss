@@ -58,3 +58,8 @@
 [type="checkbox"]:not(:checked):disabled + label:before {
     display: none;
 }
+
+#yourName-error {
+    color: #ee6e73;
+    font-size: 12px;
+}

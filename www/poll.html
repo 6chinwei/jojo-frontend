@@ -71,7 +71,7 @@
   <div class="container">
     <div class="section">
 
-        <form>
+        <form id="pollForm">
 
           <div class="row">
             <div class="col s12">
@@ -92,7 +92,7 @@
                     <th data-field="id"><br>選項</th>
                     <th data-field="name" class="poll-yourname background-grey">
                       <br>
-                      <input id="yourName" type="text" class="validate center-align" placeholder="你的名字？" required>
+                      <input id="yourName" name="yourName" type="text" class="validate center-align" placeholder="你的名字？" required>
                     </th>
                   </tr>
                 </thead>
@@ -111,7 +111,7 @@
 
           <div class="row">
             <div class="col s12 right-align">
-              <a class="waves-effect waves-light btn-large" id="voteButton">儲存修改 & 送出投票</a>
+              <button type="submit" class="waves-effect waves-light btn-large" id="voteButton">儲存修改 & 送出投票</button>
             </div>
           </div>
         </form>
