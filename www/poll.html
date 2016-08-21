@@ -166,7 +166,7 @@
       </div>
     </div>
   </footer>
-  
+
   <!--  Scripts-->
   <script src="dist/app.min.js"></script>
   <script>
@@ -181,9 +181,9 @@
     }
 
     function getUuid() {
-      return getParameterByName('id');  
+      return getParameterByName('id');
     }
-    
+
     var uuid = getUuid();
     if(!uuid) {
       window.location = 'index.html';
@@ -204,30 +204,30 @@
             $('#eventName').text(response.event_name);
             $('#eventDescription').html(response.event_desc);
 
+            var optionCountDict = {}
             // Add options content by opt
-            if(Array.isArray(response.opt)) {          
+            if(Array.isArray(response.opt)) {
               response.opt.forEach(function(option, index) {
                 tableBodyHTML +=  '<tr>' +
                   '<td class="poll-option-count">' + 0 + '</td>' +
                   '<td class="poll-option-name">' + option.opt_desc + '</td>' +
                   '<td class="poll-checkbox background-grey">' +
                      '<p>' +
-                      '<input type="checkbox" id="checkbox_' + index + '_0" />' + 
-                      '<label for="checkbox_' + index + '_0"></label>' + 
+                      '<input type="checkbox" id="checkbox_' + index + '_0" />' +
+                      '<label for="checkbox_' + index + '_0"></label>' +
                     '</p>' +
                   '</td>' +
                 '</tr>';
+                optionCountDict[option.opt_id] = 0
               });
-
               $("#tableBody").html(tableBodyHTML);
 
-              bindCheckboxEvent();
             };
 
             // Add voters by poll
             if(Array.isArray(response.poll)) {
               response.poll.forEach(function(poll, pollIndex){
-                $('thead tr').append('<th class="voter">' + 
+                $('thead tr').append('<th class="voter">' +
                           '<a class="btn-floating waves-effect waves-light"><i class="material-icons" id="editButton_'+ pollIndex + '">mode_edit</i></a><br>' + poll.user_name + '</th>');
 
                 $('tbody tr').each(function(index) {
@@ -236,8 +236,19 @@
                             '<label for="checkbox_' + index + '_' + (pollIndex+1) +'"></label>' +
                           '</p></td>');
                 });
+
+                if(Array.isArray(poll.user_sel)){
+                  poll.user_sel.forEach(function(selection) {
+                    optionCountDict[selection] += 1
+                  });
+                }
               });
 
+              $(".poll-option-count").each(function(index){
+                $(this).text(optionCountDict[index])
+              })
+
+              bindCheckboxEvent();
               bindClickEditVoteButton();
             }
 
@@ -252,7 +263,7 @@
         });
 
     }
-    
+
   </script>
   </body>
 </html>
